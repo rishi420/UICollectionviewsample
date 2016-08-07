@@ -1,0 +1,25 @@
+[{
+	"base": "D",
+	"service": "D13,D18,D25"
+}, {
+	"base": "E",
+	"service": "E7,E11,E18,E29,E30"
+}, {
+	"base": "F",
+	"service": "F13,F18,F21,F29,F30,F40"
+}, {
+	"base": "G",
+	"service": "G13,G18,G21"
+}, {
+	"base": "H",
+	"service": "H13,H18,H21,H29,H30,H42"
+}, {
+	"base": "I",
+	"service": "I13,I18"
+}, {
+	"base": "J",
+	"service": "J13,J18,J21,J29,J30,J44"
+}, {
+	"base": "K",
+	"service": "K13"
+}]
