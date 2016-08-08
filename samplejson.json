@@ -1,24 +1,48 @@
 [{
 	"base": "D",
-	"service": "D13,D18,D25"
+	"service": "D13",
+	"service": "D18",
+	"service": "D25"
 }, {
 	"base": "E",
-	"service": "E7,E11,E18,E29,E30"
+	"service": "E7",
+	"service": "E11",
+	"service": "E18",
+	"service": "E29",
+	"service": "E30"
 }, {
 	"base": "F",
-	"service": "F13,F18,F21,F29,F30,F40"
+	"service": "F13",
+	"service": "F18",
+	"service": "F21",
+	"service": "F29",
+	"service": "F30",
+	"service": "F40"
 }, {
 	"base": "G",
-	"service": "G13,G18,G21"
+	"service": "G13",
+	"service": "G18",
+	"service": "G21"
 }, {
 	"base": "H",
-	"service": "H13,H18,H21,H29,H30,H42"
+	"service": "H13",
+	"service": "H18",
+	"service": "H21",
+	"service": "H29",
+	"service": "H30",
+	"service": "H42"
 }, {
 	"base": "I",
-	"service": "I13,I18"
+	"service": "I13",
+	"service": "I18"
 }, {
 	"base": "J",
-	"service": "J13,J18,J21,J29,J30,J44"
+	"service": "J13",
+	"service": "J18",
+	"service": "J21",
+	"service": "J29",
+	"service": "J30",
+	"service": "J44"
 }, {
 	"base": "K",
 	"service": "K13"
