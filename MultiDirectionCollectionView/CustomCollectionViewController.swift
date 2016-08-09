@@ -9,98 +9,74 @@
 import UIKit
 
 let reuseIdentifier = "customCell"
+let url = "http://www.mocky.io/v2/57a9678f110000a90b165a27"
 
 class CustomCollectionViewController: UICollectionViewController {
 
+    var items = [Item]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Do any additional setup after loading the view.
+        getDataFromServer()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func getDataFromServer() {
+        
+        HttpManager.getRequest(url, parameter: .None) { [weak self] (responseData, errorMessage) -> () in
+            
+            guard let strongSelf = self else { return }
+            
+            guard let responseData = responseData else {
+                print("Get request error \(errorMessage)")
+                return
+            }
+            
+            guard let customCollectionViewLayout = strongSelf.collectionView?.collectionViewLayout as? CustomCollectionViewLayout  else { return }
+            
+            strongSelf.items = responseData
+            customCollectionViewLayout.dataSourceDidUpdate = true
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                strongSelf.collectionView!.reloadData()
+            })
+        }
     }
+}
 
-    // MARK: UICollectionViewDataSource
-
+// MARK: UICollectionViewDataSource
+extension CustomCollectionViewController {
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
-        return 8
+        return items.count
     }
-
-
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return 20
+        return items[section].services.count + 1
     }
-
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CustomCollectionViewCell
-    
-        // Configure the cell
-        cell.label.text = "Sec \(indexPath.section)/Item \(indexPath.item)"
         
-        //cell.label.alpha = 0
-       // cell.layer.borderWidth = 0.0
-        
-        
-        if indexPath.section == 0 && indexPath.item == 0 {
-         
-            cell.label.text = "D"
-            
-        }else if indexPath.section == 1 && indexPath.item == 0 {
-            
-            cell.label.text = "E"
-            
-        }else if indexPath.section == 2 && indexPath.item == 0 {
-            
-            cell.label.text = "F"
-            
-        }else if indexPath.section == 3 && indexPath.item == 0 {
-            
-            cell.label.text = "G"
-            
-        }else if indexPath.section == 4 && indexPath.item == 0 {
-            
-            cell.label.text = "H"
-            
-        }else if indexPath.section == 5 && indexPath.item == 0 {
-            
-            cell.label.text = "I"
-            
-        }else if indexPath.section == 6 && indexPath.item == 0 {
-            
-            cell.label.text = "J"
-            
-        }else if indexPath.section == 7 && indexPath.item == 0 {
-            
-            cell.label.text = "K"
-            
-        }else{
-            
-            
+        if indexPath.item == 0 {
+            cell.label.text = items[indexPath.section].base
+        } else {
+            cell.label.text = items[indexPath.section].services[indexPath.item - 1]
         }
-      
-    
+        
         return cell
     }
-    
+}
+
+// MARK: UICollectionViewDelegate
+extension CustomCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // You must call super to animate selection
         
         print("Selected = \(indexPath.section)/Item \(indexPath.item)")
-        
-      
     }
-
-    // MARK: UICollectionViewDelegate
-
-
-
 }

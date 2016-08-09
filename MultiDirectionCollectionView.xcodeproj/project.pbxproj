@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC122FBD1D59AE9F006DA499 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC122FBC1D59AE9F006DA499 /* HttpManager.swift */; };
+		BC122FBF1D59B3C5006DA499 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC122FBE1D59B3C5006DA499 /* Item.swift */; };
 		FB0826A31ABF65D3001FB3DB /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0826A21ABF65D3001FB3DB /* CustomCollectionViewCell.swift */; };
 		FB5D953C1ABE5E6B00E7C8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5D953B1ABE5E6B00E7C8CD /* AppDelegate.swift */; };
 		FB5D95411ABE5E6B00E7C8CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB5D953F1ABE5E6B00E7C8CD /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC122FBC1D59AE9F006DA499 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
+		BC122FBE1D59B3C5006DA499 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FB0826A21ABF65D3001FB3DB /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		FB5D95361ABE5E6B00E7C8CD /* MultiDirectionCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiDirectionCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB5D953A1ABE5E6B00E7C8CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				FBD0C7F91ABE6DBA00C056C8 /* CustomCollectionViewController.swift */,
 				FB0826A21ABF65D3001FB3DB /* CustomCollectionViewCell.swift */,
 				FB6CDB3F1AE5F513009834B6 /* CustomCollectionViewLayout.swift */,
+				BC122FBE1D59B3C5006DA499 /* Item.swift */,
+				BC122FBC1D59AE9F006DA499 /* HttpManager.swift */,
 				FB5D953F1ABE5E6B00E7C8CD /* Main.storyboard */,
 				FB5D95421ABE5E6B00E7C8CD /* Images.xcassets */,
 				FB5D95441ABE5E6B00E7C8CD /* LaunchScreen.xib */,
@@ -221,8 +227,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB5D953C1ABE5E6B00E7C8CD /* AppDelegate.swift in Sources */,
+				BC122FBD1D59AE9F006DA499 /* HttpManager.swift in Sources */,
 				FB0826A31ABF65D3001FB3DB /* CustomCollectionViewCell.swift in Sources */,
 				FB6CDB401AE5F513009834B6 /* CustomCollectionViewLayout.swift in Sources */,
+				BC122FBF1D59B3C5006DA499 /* Item.swift in Sources */,
 				FBD0C7FA1ABE6DBA00C056C8 /* CustomCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
