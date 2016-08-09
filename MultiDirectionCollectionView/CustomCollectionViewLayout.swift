@@ -102,6 +102,8 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
         // Acknowledge data source change, and disable for next time.
         dataSourceDidUpdate = false
         
+        var maxItemInASection: Int?
+        
         // Cycle through each section of the data source.
         if collectionView?.numberOfSections() > 0 {
             for section in 0...collectionView!.numberOfSections()-1 {
@@ -129,21 +131,21 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                             cellAttributes.zIndex = 1
                         }
                      
-                        
                         // Save the attributes.
                         cellAttrsDictionary[cellIndex] = cellAttributes
+                        
+                        if maxItemInASection < item {
+                            maxItemInASection = item
+                        }
                         
                     }
                 }
                 
             }
-            
-         
-            
         }
         
         // Update content size.
-        let contentWidth = Double(collectionView!.numberOfItemsInSection(0)) * CELL_WIDTH
+        let contentWidth = Double(maxItemInASection ?? 0) * CELL_WIDTH
         let contentHeight = Double(collectionView!.numberOfSections()) * CELL_HEIGHT
         self.contentSize = CGSize(width: contentWidth, height: contentHeight)
         
