@@ -121,7 +121,8 @@ extension CustomCollectionViewController {
                                 cell.label.backgroundColor = UIColor.orangeColor()//Or put orange color as per your logic based on myStringArrc
                                 cell.label.frame.size.width = 40
                                 cell.label.frame.size.height = 40
-                                cell.contentView.backgroundColor = UIColor.orangeColor()//Or put orange color as per your logic based on myStringArrc
+                                let color = koltuksiraid.contains(myStringc) ? UIColor(red: 62/256, green: 211/256, blue: 238/256, alpha: 1) : UIColor.orangeColor()
+                                cell.contentView.backgroundColor = color //Or put orange color as per your logic based on myStringArrc
                                 cell.label.text = myStringArrc[1]
                             }
                             
@@ -160,7 +161,8 @@ extension CustomCollectionViewController {
                                 cell.label.alpha = 1
                                 cell.label.frame.size.width = 40
                                 cell.label.frame.size.height = 40
-                                cell.contentView.backgroundColor = UIColor.greenColor()//Or put orange color as per your logic based on myStringArrc
+                                let color = koltuksiraid.contains(myStringc) ? UIColor(red: 62/256, green: 211/256, blue: 238/256, alpha: 1) : UIColor.greenColor()
+                                cell.contentView.backgroundColor = color //Or put orange color as per your logic based on myStringArrc
                             }
                         }
                     }
