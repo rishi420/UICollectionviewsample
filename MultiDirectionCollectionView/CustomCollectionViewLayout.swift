@@ -8,12 +8,14 @@
 
 import UIKit
 
+public var CELL_HEIGHT = 22.0
+public var CELL_WIDTH = 40.0
+
 class CustomCollectionViewLayout: UICollectionViewLayout {
     
     // Used for calculating each cells CGRect on screen.
     // CGRect will define the Origin and Size of the cell.
-    let CELL_HEIGHT = 40.0
-    let CELL_WIDTH = 120.0
+
     let STATUS_BAR = UIApplication.sharedApplication().statusBarFrame.height
     
     // Dictionary to hold the UICollectionViewLayoutAttributes for

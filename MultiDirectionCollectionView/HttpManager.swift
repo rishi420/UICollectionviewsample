@@ -38,7 +38,7 @@ class HttpManager {
             
             jsonArray.forEach({ (eachItem) -> () in
                 guard let dic = eachItem as? NSDictionary else { return }
-                guard let service = dic["service"] as? String, base = dic["base"] as? String else {
+                guard let service = dic["Seats"] as? String, base = dic["Base"] as? String else {
                     completionHandler(responseData: .None, errorMessage: "JSON structure missmatch")
                     return
                 }
