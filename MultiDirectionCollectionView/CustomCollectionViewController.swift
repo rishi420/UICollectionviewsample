@@ -71,8 +71,6 @@ extension CustomCollectionViewController {
         if indexPath.item == 0 {
             
             cell.label.text = items[indexPath.section].base
-            cell.label.frame.size.width = 30
-            cell.label.frame.size.height = 30
             cell.label.layer.borderColor = UIColor.clearColor().CGColor
             cell.contentView.backgroundColor = UIColor.clearColor()
             
@@ -92,10 +90,6 @@ extension CustomCollectionViewController {
                     cell.alpha = 1
                     
                     if sirano == 2 {
-                        cell.frame.size.width = 80
-                        cell.layer.frame.size.width = 80
-                        CELL_WIDTH = 80.0
-                        CELL_HEIGHT = 22.0
                         
                         if satimdurum == 1 {
                             
@@ -105,37 +99,25 @@ extension CustomCollectionViewController {
                             cell.label.text = myStringArrc[1]
                             
                         }else{
-                            
-                            
-                            
-                            
-                            
+       
                             if myStringArrc[1] == "NULL"  {
                                 cell.label.alpha = 0
                                 cell.label.layer.borderColor = UIColor.clearColor().CGColor
-                                cell.label.frame.size.width = 0
-                                cell.label.frame.size.height = 0
+
                                 cell.contentView.backgroundColor = UIColor.clearColor()
-                            }else{
+                            } else {
                                 cell.label.alpha = 1
                                 cell.label.backgroundColor = UIColor.orangeColor()//Or put orange color as per your logic based on myStringArrc
-                                cell.label.frame.size.width = 40
-                                cell.label.frame.size.height = 40
+
                                 let color = koltuksiraid.contains(myStringc) ? UIColor(red: 62/256, green: 211/256, blue: 238/256, alpha: 1) : UIColor.orangeColor()
                                 cell.contentView.backgroundColor = color //Or put orange color as per your logic based on myStringArrc
                                 cell.label.text = myStringArrc[1]
                             }
-                            
-                            
                         }
                         
                         cell.label.text = "\(myStringArrc[1])-\(myStringArrc[5])"
-                    }else{
-                        
-                        cell.frame.size.width = 40
-                        cell.layer.frame.size.width = 40
-                        CELL_HEIGHT = 22.0
-                        CELL_WIDTH = 40
+
+                    } else {
                         
                         if satimdurum == 1 {
                             
@@ -144,37 +126,27 @@ extension CustomCollectionViewController {
                             cell.contentView.backgroundColor = UIColor.redColor()
                             cell.label.text = myStringArrc[1]
                             
-                        }else{
-                            
-                            
-                            
+                        } else {
                             
                             if myStringArrc[1] == "NULL"  {
                                 cell.label.alpha = 0
                                 cell.label.backgroundColor = UIColor.clearColor()
                                 cell.label.layer.borderColor = UIColor.clearColor().CGColor
-                                cell.label.frame.size.width = 0
-                                cell.label.frame.size.height = 0
                                 cell.contentView.backgroundColor = UIColor.clearColor()
-                            }else{
+                            } else {
                                 cell.label.text = myStringArrc[1]
                                 cell.label.alpha = 1
-                                cell.label.frame.size.width = 40
-                                cell.label.frame.size.height = 40
                                 let color = koltuksiraid.contains(myStringc) ? UIColor(red: 62/256, green: 211/256, blue: 238/256, alpha: 1) : UIColor.greenColor()
                                 cell.contentView.backgroundColor = color //Or put orange color as per your logic based on myStringArrc
                             }
                         }
                     }
-                }else{
+                } else {
                     cell.label.alpha = 0
                     cell.label.layer.borderColor = UIColor.clearColor().CGColor
-                    cell.label.frame.size.width = 0
-                    cell.label.frame.size.height = 0
                     cell.contentView.backgroundColor = UIColor.clearColor()
                     cell.alpha = 0
                 }
-                
             }
         }
         
