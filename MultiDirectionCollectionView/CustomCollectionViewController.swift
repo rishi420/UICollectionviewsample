@@ -24,6 +24,13 @@ class CustomCollectionViewController: UICollectionViewController {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        guard let customCollectionViewLayout = collectionView?.collectionViewLayout as? CustomCollectionViewLayout  else {
+            print("Collection view layout not set")
+            return
+        }
+        
+        customCollectionViewLayout.delegate = self
 
         getDataFromServer()
     }
@@ -255,14 +262,28 @@ extension CustomCollectionViewController {
             }
         }
         print(koltuksiraid)
-        
-        
-        
     }
-    
-    
-    
-    
-    
 }
 
+
+extension CustomCollectionViewController: CustomCollectionViewDelegateLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let regularWidth = CGFloat(40)
+        
+        guard indexPath.item > 0 else { return regularWidth  }
+        
+        let myStringc = items[indexPath.section].services[indexPath.item - 1]
+        var myStringArrc = myStringc.componentsSeparatedByString("*")
+        
+        let satimdurum:Int = Int(myStringArrc[3])!
+        let sirano:Int = Int(myStringArrc[0])!
+        
+        if sirano == 2 && satimdurum == 0 {
+            return regularWidth * 2
+        }
+        
+        return regularWidth
+    }
+}

@@ -8,8 +8,12 @@
 
 import UIKit
 
-public var CELL_HEIGHT = 22.0
-public var CELL_WIDTH = 40.0
+public var CELL_HEIGHT = CGFloat(22)
+
+protocol CustomCollectionViewDelegateLayout: NSObjectProtocol {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat
+}
 
 class CustomCollectionViewLayout: UICollectionViewLayout {
     
@@ -34,6 +38,8 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
     // Note: The data source would be responsible for updating
     // this value if an update was performed.
     var dataSourceDidUpdate = true
+    
+    weak var delegate: CustomCollectionViewDelegateLayout?
     
     override func collectionViewContentSize() -> CGSize {
         return self.contentSize
@@ -104,7 +110,7 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
         // Acknowledge data source change, and disable for next time.
         dataSourceDidUpdate = false
         
-        var maxItemInASection: Int?
+        var maxWidthInASection = CGFloat(0)
         
         // Cycle through each section of the data source.
         if collectionView?.numberOfSections() > 0 {
@@ -112,15 +118,29 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                 
                 // Cycle through each item in the section.
                 if collectionView?.numberOfItemsInSection(section) > 0 {
+                    
+                    var prevCellAttributes: UICollectionViewLayoutAttributes?
+                    
                     for item in 0...collectionView!.numberOfItemsInSection(section)-1 {
                         
-                        // Build the UICollectionVieLayoutAttributes for the cell.
                         let cellIndex = NSIndexPath(forItem: item, inSection: section)
-                        let xPos = Double(item) * CELL_WIDTH
-                        let yPos = Double(section) * CELL_HEIGHT
+                        
+                        guard let width = delegate?.collectionView(collectionView!, layout: self, widthForItemAtIndexPath: cellIndex) else {
+                            print("Please comform to CustomCollectionViewDelegateLayout protocol")
+                            return
+                        }
+                        
+                        // Build the UICollectionVieLayoutAttributes for the cell.
+                        
+                        var xPos = CGFloat(0)
+                        let yPos = CGFloat(section) * CELL_HEIGHT
+                        
+                        if let prevCellAttributes = prevCellAttributes {
+                            xPos = CGRectGetMaxX(prevCellAttributes.frame)
+                        }
                         
                         let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: cellIndex)
-                        cellAttributes.frame = CGRect(x: xPos, y: yPos, width: CELL_WIDTH, height: CELL_HEIGHT)
+                        cellAttributes.frame = CGRect(x: xPos, y: yPos, width: width, height: CELL_HEIGHT)
                         
                         // Determine zIndex based on cell type.
                         if section == 0 && item == 0 {
@@ -135,11 +155,13 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                      
                         // Save the attributes.
                         cellAttrsDictionary[cellIndex] = cellAttributes
+                        prevCellAttributes = cellAttributes
                         
-                        if maxItemInASection < item {
-                            maxItemInASection = item
+                        let maxX = CGRectGetMaxX(cellAttributes.frame)
+                        
+                        if maxWidthInASection < maxX {
+                            maxWidthInASection = maxX
                         }
-                        
                     }
                 }
                 
@@ -147,9 +169,9 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
         }
         
         // Update content size.
-        let contentWidth = Double(maxItemInASection ?? 0) * CELL_WIDTH
-        let contentHeight = Double(collectionView!.numberOfSections()) * CELL_HEIGHT
-        self.contentSize = CGSize(width: contentWidth, height: contentHeight)
+        let contentWidth = maxWidthInASection
+        let contentHeight = Double(collectionView!.numberOfSections())
+        self.contentSize = CGSize(width: Double(contentWidth), height: contentHeight)
         
     }
     
